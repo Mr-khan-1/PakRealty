@@ -1,0 +1,64 @@
+/* AutoSlideCarousel.css */
+/* Glassmorphism container */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Slide track */
+.carousel__track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Each slide */
+.carousel__slide {
+  min-width: 100%;
+  height: 260px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.carousel__slide--active {
+  opacity: 1;
+}
+
+/* Dots navigation */
+.carousel__dots {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.6rem;
+}
+
+.carousel__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel__dot--active,
+.carousel__dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Placeholder when no images */
+.carousel__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  color: #888;
+  font-size: 1.1rem;
+}
