@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, MessageSquare, UserCircle } from 'lucide-react';
+import { Heart, MessageSquare, UserCircle, LayoutDashboard } from 'lucide-react';
 
 
 import { Link, NavLink } from 'react-router-dom';
@@ -55,10 +55,10 @@ const SavedProperties = () => {
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <ul className="sidebar-menu">
-          <li><NavLink to="/user/dashboard" className="sidebar-link"> Summary</NavLink></li>
-          <li><NavLink to="/user/saved" className="sidebar-link active"><Heart size={18} /> Saved Properties</NavLink></li>
-          <li><NavLink to="/user/inquiries" className="sidebar-link"><MessageSquare size={18} /> My Inquiries</NavLink></li>
-          <li><NavLink to="/user/profile" className="sidebar-link"><UserCircle size={18} /> My Profile</NavLink></li>
+          <li><NavLink to="/user/dashboard" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink></li>
+          <li><NavLink to="/user/saved" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><Heart size={18} /> Saved Properties</NavLink></li>
+          <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><MessageSquare size={18} /> My Inquiries</NavLink></li>
+          <li><NavLink to="/user/profile" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><UserCircle size={18} /> My Profile</NavLink></li>
         </ul>
       </aside>
 

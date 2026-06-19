@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Heart, MessageSquare, UserCircle, LayoutDashboard } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../utils/api';
@@ -55,10 +56,10 @@ const Profile = () => {
     <div className="dashboard-layout">
       <aside className="dashboard-sidebar">
         <ul className="sidebar-menu">
-          <li><NavLink to="/user/dashboard" className={({isActive}) => `sidebar-link${isActive?' active':''}`}>📊 Overview</NavLink></li>
-          <li><NavLink to="/user/saved"     className={({isActive}) => `sidebar-link${isActive?' active':''}`}>❤️ Saved</NavLink></li>
-          <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive?' active':''}`}>💬 Inquiries</NavLink></li>
-          <li><NavLink to="/user/profile"   className={({isActive}) => `sidebar-link${isActive?' active':''}`}>👤 Profile</NavLink></li>
+          <li><NavLink to="/user/dashboard" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink></li>
+          <li><NavLink to="/user/saved" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><Heart size={18} /> Saved Properties</NavLink></li>
+          <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><MessageSquare size={18} /> My Inquiries</NavLink></li>
+          <li><NavLink to="/user/profile" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><UserCircle size={18} /> My Profile</NavLink></li>
         </ul>
       </aside>
 
