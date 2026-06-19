@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-bg-image {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -529,8 +529,9 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(15,23,42,0.85) 0%,
-    rgba(37,99,235,0.75) 100%);
+    rgba(37,99,235,0.75) 0%,
+    rgba(15,23,42,0.85) 60%,
+    rgba(16,185,129,0.3) 100%);
 }
 
 .hero-content {
