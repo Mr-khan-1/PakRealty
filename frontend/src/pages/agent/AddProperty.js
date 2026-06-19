@@ -127,7 +127,7 @@ const [imageUrlsText, setImageUrlsText] = useState('');
             ></textarea>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div className="grid-responsive-2">
             <div className="form-group">
               <label>Price (PKR)</label>
               <input
@@ -161,7 +161,7 @@ const [imageUrlsText, setImageUrlsText] = useState('');
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
+          <div className="grid-responsive-3">
             <div className="form-group">
               <label>Property Type</label>
               <select className="form-control" value={type} onChange={(e) => setType(e.target.value)}>
@@ -200,7 +200,7 @@ const [imageUrlsText, setImageUrlsText] = useState('');
 
           <h3 style={{ margin: '1.5rem 0 1rem' }}>Location Information</h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div className="grid-responsive-2">
             <div className="form-group">
               <label>City</label>
               <select className="form-control" value={city} onChange={(e) => setCity(e.target.value)}>

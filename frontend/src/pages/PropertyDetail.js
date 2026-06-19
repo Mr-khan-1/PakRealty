@@ -195,7 +195,7 @@ const PropertyDetail = () => {
           {(property.parking || property.kitchens) && (
             <div className="card" style={{ marginBottom: '1.5rem' }}>
               <h3 style={{ marginBottom: '1rem' }}>Additional Details</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div className="grid-responsive-2" style={{ gap: '0.75rem' }}>
                 {property.parking  && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Car size={16} color="var(--primary)" /> <strong>Parking:</strong> {property.parking} spaces</div>}
                 {property.kitchens && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><ChefHat size={16} color="var(--primary)" /> <strong>Kitchens:</strong> {property.kitchens}</div>}
                 {property.isVerified && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><CheckCircle size={16} color="#10b981" /> <strong>Status:</strong> Verified listing</div>}

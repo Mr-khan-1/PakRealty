@@ -82,7 +82,7 @@ const Profile = () => {
           Manage your account information, company name, and password.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+        <div className="grid-responsive-2">
           {/* Update profile details */}
           <form onSubmit={handleUpdateProfile}>
             <h3 style={{ marginBottom: '1.5rem' }}>Personal Info</h3>

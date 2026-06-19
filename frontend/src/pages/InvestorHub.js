@@ -189,7 +189,7 @@ const InvestorHub = () => {
                     )}
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', background: 'var(--background)', padding: '1rem', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+                  <div className="grid-responsive-2" style={{ gap: '1rem', background: 'var(--background)', padding: '1rem', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
                     <div>
                       <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.2rem' }}>Asking Price</span>
                       <strong style={{ fontSize: '1.05rem', color: 'var(--text-primary)' }}>{formatPKR(prop.price)}</strong>
@@ -207,7 +207,7 @@ const InvestorHub = () => {
               ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
+            <div className="grid-responsive-2" style={{ gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
               
               {/* TERMINAL DATA GRID */}
               <div>
@@ -327,7 +327,7 @@ const InvestorHub = () => {
             </div>
             
             <div style={{ padding: '2rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+              <div className="grid-responsive-3" style={{ marginBottom: '2rem' }}>
                 <div style={{ background: 'var(--background)', padding: '1.5rem', borderRadius: 'var(--radius)', border: '1px solid var(--border)', textAlign: 'center' }}>
                   <span style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>1-Year Forecast</span>
                   <strong style={{ fontSize: '1.5rem', color: 'var(--success)' }}>+12.4%</strong>

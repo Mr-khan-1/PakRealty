@@ -59,7 +59,7 @@ const Comparison = () => {
   return (
     <div className="comparison-page" style={{ maxWidth: '1280px', margin: '2rem auto', padding: '0 1rem' }}>
       
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+      <div className="flex-responsive" style={{ marginBottom: '2rem' }}>
         <div>
           <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '2rem', margin: 0 }}>
             <Scale size={28} color="var(--primary)" /> Property Comparison
