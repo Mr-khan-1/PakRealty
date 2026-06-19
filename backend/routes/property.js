@@ -469,7 +469,7 @@ router.post('/', verifyToken, upload.array('uploadedImages', 10), [
         phone: contactPhone || '',
         email: contactEmail || '',
       },
-      isVerified: true,
+      isVerified: false,
     });
 
     await property.populate('agentId', 'name email phone');

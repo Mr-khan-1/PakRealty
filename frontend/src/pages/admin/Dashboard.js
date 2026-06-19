@@ -125,32 +125,8 @@ const Dashboard = () => {
           <li><NavLink to="/admin/properties" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Moderation Queue</NavLink></li>
         </ul>
 
-        {/* Scraper control */}
+        {/* Pending Properties Alert */}
         <div style={{ padding: '1rem', marginTop: '1.5rem', borderTop: '1px solid var(--border)' }}>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: '600' }}>DATA SOURCE</p>
-          <button
-            onClick={triggerScraper}
-            disabled={scraper.running || scraperLoading}
-            style={{
-              width:        '100%',
-              padding:      '0.65rem',
-              background:   scraper.running ? 'rgba(245,158,11,0.15)' : 'rgba(16,185,129,0.15)',
-              color:        scraper.running ? '#f59e0b' : '#10b981',
-              border:       `1px solid ${scraper.running ? 'rgba(245,158,11,0.4)' : 'rgba(16,185,129,0.4)'}`,
-              borderRadius: 'var(--radius)',
-              cursor:       scraper.running ? 'not-allowed' : 'pointer',
-              fontWeight:   '700',
-              fontSize:     '0.82rem',
-              transition:   'all 0.2s',
-            }}
-          >
-            {scraper.running ? '⏳ Scraper Running…' : scraperLoading ? 'Starting…' : ' Run Scraper Now'}
-          </button>
-          {scraper.lastRun && (
-            <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '0.4rem', textAlign: 'center' }}>
-              Last run: {new Date(scraper.lastRun).toLocaleString('en-PK')}
-            </p>
-          )}
           {stats?.pendingProperties > 0 && (
             <div style={{ marginTop: '0.75rem', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 'var(--radius)', padding: '0.6rem 0.75rem', fontSize: '0.78rem', color: '#ef4444', textAlign: 'center' }}>
               <AlertTriangle size={14} /> <strong>{stats.pendingProperties}</strong> listing{stats.pendingProperties > 1 ? 's' : ''} pending
@@ -219,7 +195,7 @@ const Dashboard = () => {
                   </thead>
                   <tbody>
                     {recentListings.length === 0 ? (
-                      <tr><td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>No listings found. Run the scraper to populate.</td></tr>
+                      <tr><td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>No pending listings found in the verification queue.</td></tr>
                     ) : recentListings.map(prop => (
                       <tr key={prop._id} style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.15s' }}
                         onMouseEnter={e => e.currentTarget.style.background = 'var(--bg)'}
