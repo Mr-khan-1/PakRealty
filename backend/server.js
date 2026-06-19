@@ -103,7 +103,7 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Start server ─────────────────────────────────────────────────────────────
-const PORT = parseInt(process.env.PORT || '5000', 10);
+const PORT = 5000; // Hardcoded to match Railway Target Port 5000
 
 const startServer = (port) => {
   const server = app.listen(port, '0.0.0.0', async () => {
