@@ -103,7 +103,7 @@ router.get('/', [
       .lean();
 
     // Prefix image URLs with backend base URL if needed
-    const base = process.env.BACKEND_URL || '';
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
     properties.forEach(p => {
       if (p.thumbnail && !p.thumbnail.startsWith('http')) {
         p.thumbnail = `${base}${p.thumbnail}`;
@@ -312,7 +312,7 @@ router.get('/featured', async (req, res) => {
       .lean();
 
     // Prefix image URLs for featured properties
-    const base = process.env.BACKEND_URL || '';
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
     featured.forEach(p => {
       if (p.thumbnail && !p.thumbnail.startsWith('http')) {
         p.thumbnail = `${base}${p.thumbnail}`;
@@ -339,7 +339,7 @@ router.get('/agent/:agentId', async (req, res) => {
       .lean();
 
     // Prefix image URLs with backend base URL if needed
-    const base = process.env.BACKEND_URL || '';
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
     properties.forEach(p => {
       if (p.thumbnail && !p.thumbnail.startsWith('http')) {
         p.thumbnail = `${base}${p.thumbnail}`;
@@ -370,7 +370,7 @@ router.get('/:id', async (req, res) => {
     if (!property) return res.status(404).json({ error: 'Property not found' });
 
     // Prefix image URLs with backend base URL if needed
-    const base = process.env.BACKEND_URL || '';
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
     const propObj = property.toObject();
     if (propObj.thumbnail && !propObj.thumbnail.startsWith('http')) {
       propObj.thumbnail = `${base}${propObj.thumbnail}`;
@@ -404,7 +404,7 @@ router.post('/', verifyToken, upload.array('uploadedImages', 10), [
 
     const body = req.body;
     const images = [];
-    const base = process.env.BACKEND_URL || '';
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
 
     // Source 1: Uploaded files from agent's computer
     if (req.files && req.files.length > 0) {
