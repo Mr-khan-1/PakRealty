@@ -32,8 +32,6 @@ const Dashboard = () => {
   const { user } = useAuth();
   const [stats,   setStats]   = useState(null);
   const [loading, setLoading] = useState(true);
-  const [scraper, setScraper] = useState({ running: false, lastRun: null, lastResult: null });
-  const [scraperLoading, setScraperLoading] = useState(false);
 
   // ── Fetch admin stats ───────────────────────────────────────────────────────
   const fetchStats = useCallback(async () => {
@@ -41,11 +39,6 @@ const Dashboard = () => {
       const res = await api.get('/admin/stats');
       if (res.data.success) {
         setStats(res.data.stats);
-        setScraper({
-          running:    res.data.stats.scraperRunning,
-          lastRun:    res.data.stats.lastScraperRun,
-          lastResult: null,
-        });
       }
     } catch (err) {
       console.error('Admin stats error:', err);
@@ -73,38 +66,6 @@ const Dashboard = () => {
 
   useEffect(() => { fetchStats(); }, [fetchStats]);
 
-  // ── Poll scraper status while it's running ─────────────────────────────────
-  useEffect(() => {
-    if (!scraper.running) return;
-    const interval = setInterval(async () => {
-      try {
-        const res = await api.get('/admin/scrape/status');
-        setScraper(res.data);
-        if (!res.data.running) {
-          clearInterval(interval);
-          fetchStats();                          // refresh counts after scrape
-          toast.success('Scraper finished!');
-        }
-      } catch {}
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [scraper.running, fetchStats]);
-
-  // ── Trigger scraper ─────────────────────────────────────────────────────────
-  const triggerScraper = async () => {
-    if (scraper.running) return;
-    setScraperLoading(true);
-    try {
-      const res = await api.post('/admin/scrape');
-      setScraper({ running: true, lastRun: null, lastResult: null });
-      toast.success(res.data.message || 'Scraper started!');
-    } catch (err) {
-      const msg = err.response?.data?.error || 'Failed to start scraper';
-      toast.error(msg);
-    } finally {
-      setScraperLoading(false);
-    }
-  };
 
   const recentListings = stats?.recentListings || [];
 
@@ -164,19 +125,6 @@ const Dashboard = () => {
               <StatCard icon={<AlertTriangle size={28} />} label="Pending Review"  value={stats?.pendingProperties ?? 0} link="/admin/properties"
                 color="#ef4444" bg="rgba(239,68,68,0.1)" border="rgba(239,68,68,0.25)" />
             </div>
-
-            {/* Scraper status banner */}
-            {scraper.running && (
-              <div style={{ marginBottom: '1.5rem', background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.35)', borderRadius: 'var(--radius-lg)', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div className="spinner" style={{ width: '1.5rem', height: '1.5rem', borderTopColor: '#f59e0b' }} />
-                <div>
-                  <strong style={{ color: '#f59e0b' }}>Scraper is running…</strong>
-                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                    Fetching real-time listings from Zameen.com. Stats will auto-refresh when complete.
-                  </p>
-                </div>
-              </div>
-            )}
 
             {/* Recent listings table */}
             <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
