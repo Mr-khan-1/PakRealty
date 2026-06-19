@@ -167,7 +167,7 @@ const PropertyDetail = () => {
           </p>
 
           {/* Stats bar */}
-          <div className="card" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem', textAlign: 'center' }}>
+          <div className="card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem', marginBottom: '1.5rem', textAlign: 'center' }}>
             {[
               { icon: <Bed size={16} />,    label: 'Bedrooms',  value: property.bedrooms  ?? '—' },
               { icon: <Bath size={16} />,   label: 'Bathrooms', value: property.bathrooms ?? '—' },
@@ -186,7 +186,7 @@ const PropertyDetail = () => {
           {/* Description */}
           <div className="card" style={{ marginBottom: '1.5rem' }}>
             <h3 style={{ marginBottom: '0.75rem' }}>Description</h3>
-            <p style={{ color: 'var(--text-2)', lineHeight: 1.8, whiteSpace: 'pre-line' }}>
+            <p style={{ color: 'var(--text-2)', lineHeight: 1.8, whiteSpace: 'pre-line', wordBreak: 'break-word' }}>
               {property.description || 'No description provided.'}
             </p>
           </div>
