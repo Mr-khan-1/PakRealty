@@ -267,9 +267,7 @@ export default function Home() {
                   </div>
                   <div className="property-card-footer">
                     <div className="property-card-price">PKR {formatPrice(p.price)}</div>
-                    <Link to={`/property/${p._id}`} className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                      Details <ArrowRight size={14} />
-                    </Link>
+
                   </div>
                 </div>
               </div>
