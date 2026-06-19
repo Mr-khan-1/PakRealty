@@ -648,6 +648,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero stats */
 .hero-stats {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   gap: 2rem;
