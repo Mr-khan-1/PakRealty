@@ -92,7 +92,7 @@ const PropertyDetail = () => {
   const agentEmail = property.agentId?.email || property.contactInfo?.email || '';
 
   return (
-    <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '2rem var(--pad)' }}>
+    <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '2rem var(--pad)', paddingBottom: '100px' }}>
 
       {/* Back button */}
       <button

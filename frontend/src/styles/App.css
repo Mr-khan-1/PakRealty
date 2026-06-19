@@ -1275,6 +1275,20 @@ tbody tr:last-child td { border-bottom: none; }
     animation: fadeInUp 0.25s var(--ease);
   }
   .filters-sidebar--open { display: block; }
+  
+  /* Property Detail */
+  .property-detail-layout { grid-template-columns: 1fr; }
+  .mobile-sticky-contact {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    gap: 1rem;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+  }
 
   /* Dashboard */
   .dashboard-layout  { grid-template-columns: 1fr; }
