@@ -23,7 +23,6 @@
 - **Professional Express.js API** with proper error handling
 - **MongoDB Database** with optimized schemas
 - **JWT Authentication** with token refresh
-- **OTP Verification** system
 - **Role-Based Access Control** (User, Agent, Admin)
 - **Property Management** (CRUD operations)
 - **Inquiry System** with messaging
