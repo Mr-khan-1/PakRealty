@@ -136,7 +136,7 @@ export default function Home() {
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="hero">
-        <div className="hero-bg-image" />
+        <div className="hero-bg-image" style={{ backgroundImage: "url('/images/hero-bg.jpg')" }} />
         <div className="hero-content">
           <div className="hero-badge"><Award size={16} color="var(--primary)" /> Pakistan's #1 Real Estate Platform</div>
           <h1 className="hero-title">
