@@ -67,7 +67,7 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="dashboard-content">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div className="dashboard-header">
           <div>
             <h2 style={{ margin: 0 }}>Agent Workspace</h2>
             <p style={{ color: 'var(--text-secondary)', margin: '0.25rem 0 0', fontSize: '0.9rem' }}>
@@ -113,7 +113,7 @@ const Dashboard = () => {
             </div>
 
             {/* Quick Actions */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+            <div className="dashboard-quick-actions">
               {/* Recent Listings */}
               <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
                 <div style={{ padding: '1rem 1.25rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

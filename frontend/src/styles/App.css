@@ -1176,6 +1176,36 @@ tbody tr:last-child td { border-bottom: none; }
 }
 
 /* ════════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ════════════════════════════════════════════════════════════════ */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.property-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.mobile-sticky-contact {
+  display: none;
+}
+
+/* ════════════════════════════════════════════════════════════════
    RESPONSIVE — MOBILE (≤ 768px)
    ════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
@@ -1232,6 +1262,23 @@ tbody tr:last-child td { border-bottom: none; }
   .features-grid  { grid-template-columns: 1fr; }
   .properties-grid{ grid-template-columns: 1fr; }
   .stats-grid     { grid-template-columns: 1fr 1fr; }
+  /* Layout Utilities */
+  .dashboard-header { flex-direction: column; align-items: stretch; }
+  .dashboard-header .btn { width: 100%; justify-content: center; padding: 0.85rem; }
+  .dashboard-quick-actions { grid-template-columns: 1fr; }
+  
+  .property-detail-layout { grid-template-columns: 1fr; padding-bottom: 80px; }
+  
+  .mobile-sticky-contact {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem;
+    background: var(--surface);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+    z-index: 100;
+    gap: 1rem;
+  }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -1242,4 +1289,5 @@ tbody tr:last-child td { border-bottom: none; }
   .demo-grid    { grid-template-columns: 1fr; }
   .cta-actions  { flex-direction: column; align-items: center; }
   .hero-badge   { font-size: 0.75rem; }
+  .form-row-mini { grid-template-columns: 1fr; }
 }

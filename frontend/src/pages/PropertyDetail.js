@@ -103,7 +103,7 @@ const PropertyDetail = () => {
         <ArrowLeft size={16} /> Back to Listings
       </button>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.8fr) minmax(0, 1fr)', gap: '2rem', alignItems: 'start' }}>
+      <div className="property-detail-layout">
 
         {/* ── Left: Images + Details ───────────────────────────────────── */}
         <div>
@@ -333,6 +333,16 @@ const PropertyDetail = () => {
             </form>
           </div>
         </div>
+      </div>
+
+      {/* ── Mobile Sticky Contact ──────────────────────────────────────── */}
+      <div className="mobile-sticky-contact">
+        <a href={agentPhone ? `tel:${agentPhone}` : '#'} className="btn btn-primary" style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}>
+          <Phone size={18} /> Call
+        </a>
+        <a href={agentEmail ? `mailto:${agentEmail}` : '#'} className="btn btn-secondary" style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}>
+          <Mail size={18} /> Message
+        </a>
       </div>
     </div>
   );
