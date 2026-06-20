@@ -21,7 +21,7 @@ const Properties = () => {
     setLoading(true);
     try {
       // Fetch up to 100 properties for admin moderation
-      const res = await api.get('/properties?limit=100');
+      const res = await api.get('/admin/properties?limit=100');
       if (res.data) {
         setProperties(res.data.properties || []);
       }

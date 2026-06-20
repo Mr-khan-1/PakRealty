@@ -134,6 +134,38 @@ router.get('/stats', requireAdmin, async (req, res) => {
   }
 });
 
+// GET /api/admin/properties — get properties for moderation
+router.get('/properties', requireAdmin, async (req, res) => {
+  try {
+    const { page = 1, limit = 100 } = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    
+    const properties = await Property.find({})
+      .populate('agentId', 'name email phone')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit))
+      .lean();
+      
+    const base = process.env.BACKEND_URL || 'https://pakrealty-production.up.railway.app';
+    properties.forEach(p => {
+      if (p.thumbnail && !p.thumbnail.startsWith('http')) {
+        p.thumbnail = `${base}${p.thumbnail}`;
+      }
+      if (Array.isArray(p.images)) {
+        p.images = p.images.map(img => ({
+          ...img,
+          url: img.url && !img.url.startsWith('http') ? `${base}${img.url}` : img.url,
+        }));
+      }
+    });
+
+    res.json({ properties });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // PATCH /api/admin/properties/:id/verify — toggle verification
 router.patch('/properties/:id/verify', requireAdmin, async (req, res) => {
   try {
