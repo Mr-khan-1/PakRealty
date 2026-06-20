@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
   if (!token) return res.status(401).json({ error: 'No token' });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your_super_secret_key');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'pak_property_secret_2024');
     req.userId = decoded.userId;
     next();
   } catch (error) {
