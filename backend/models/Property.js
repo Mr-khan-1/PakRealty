@@ -16,7 +16,7 @@ const PropertySchema = new mongoose.Schema({
   price:        { type: Number, required: true, min: 0 },
   priceUnit:    { type: String, default: 'PKR' },
   priceRaw:     { type: String, default: '' },
-  type:         { type: String, enum: ['House','Apartment','Plot','Commercial'], required: true },
+  type:         { type: String, enum: ['House','Apartment','Plot','Commercial','Shop','Office','Farm','Industrial','Other'], required: true },
   category:     { type: String, enum: ['residential','commercial'], default: 'residential' },
   purpose:      { type: String, enum: ['sale','rent'], required: true },
   bedrooms:     { type: Number, default: null },

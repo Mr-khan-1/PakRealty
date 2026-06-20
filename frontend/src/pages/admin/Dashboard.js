@@ -30,8 +30,9 @@ const StatCard = ({ icon, label, value, color, bg, border, link }) => (
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [stats,   setStats]   = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [stats,          setStats]          = useState(null);
+  const [recentListings, setRecentListings] = useState([]);
+  const [loading,        setLoading]        = useState(true);
 
   // ── Fetch admin stats ───────────────────────────────────────────────────────
   const fetchStats = useCallback(async () => {
@@ -39,6 +40,7 @@ const Dashboard = () => {
       const res = await api.get('/admin/stats');
       if (res.data.success) {
         setStats(res.data.stats);
+        setRecentListings(res.data.recentListings || []);
       }
     } catch (err) {
       console.error('Admin stats error:', err);
@@ -58,6 +60,7 @@ const Dashboard = () => {
           pendingProperties:props.filter(p => !p.isVerified).length,
           scrapedProperties:props.filter(p => p.isExternal).length,
         });
+        setRecentListings(props.slice(0, 10));
       } catch {}
     } finally {
       setLoading(false);
@@ -66,8 +69,6 @@ const Dashboard = () => {
 
   useEffect(() => { fetchStats(); }, [fetchStats]);
 
-
-  const recentListings = stats?.recentListings || [];
 
   return (
     <div className="dashboard-layout">

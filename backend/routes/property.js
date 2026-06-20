@@ -393,7 +393,7 @@ router.post('/', verifyToken, upload.array('uploadedImages', 10), [
   body('title').notEmpty().trim().withMessage('Title is required'),
   body('description').isLength({ min: 20 }).withMessage('Description must be at least 20 characters'),
   body('price').isFloat({ min: 0 }).withMessage('Valid price required'),
-  body('type').isIn(['House', 'Apartment', 'Plot', 'Commercial', 'Shop', 'Office', 'Industrial', 'Farm', 'Other']).withMessage('Invalid property type'),
+  body('type').isIn(['House', 'Apartment', 'Plot', 'Commercial', 'Shop', 'Office', 'Farm', 'Industrial', 'Other']).withMessage('Invalid property type'),
   body('purpose').isIn(['sale', 'rent']).withMessage('Purpose must be sale or rent'),
   body('city').notEmpty().withMessage('City is required'),
   body('areaValue').optional().isFloat({ min: 0 }).withMessage('Area value must be a positive number'),
