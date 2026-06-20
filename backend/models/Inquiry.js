@@ -5,6 +5,8 @@ const InquirySchema = new mongoose.Schema({
   userId:     { type: mongoose.Schema.Types.ObjectId, ref: 'User',     required: true },
   agentId:    { type: mongoose.Schema.Types.ObjectId, ref: 'User',     default: null },
   message:    { type: String, required: true, trim: true },
+  inquiryType: { type: String, enum: ['general', 'inspection', 'offer', 'rental'], default: 'general' },
+  preferredContact: { type: String, enum: ['email', 'phone', 'whatsapp'], default: 'email' },
   status:     { type: String, enum: ['pending', 'replied', 'closed', 'new', 'contacted', 'in-progress', 'resolved', 'responded'], default: 'pending' },
   reply:      { type: String, default: '' },
 }, { timestamps: true });
