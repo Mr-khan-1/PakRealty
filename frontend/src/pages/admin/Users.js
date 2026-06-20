@@ -182,7 +182,7 @@ const AdminUsers = () => {
                         <td style={{ padding: '0.85rem 1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{user.email}</td>
                         <td style={{ padding: '0.85rem 1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{user.phone || '—'}</td>
                         <td style={{ padding: '0.85rem 1rem' }}>
-                          <span style={{ background: rc.bg, color: rc.color, padding: '0.2rem 0.6rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', textTransform: 'uppercase' }}>
+                          <span style={{ background: rc.bg, color: rc.color, padding: '0.2rem 0.6rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
                             {user.role}
                           </span>
                         </td>
@@ -190,7 +190,7 @@ const AdminUsers = () => {
                           {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-PK', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
                         </td>
                         <td style={{ padding: '0.85rem 1rem' }}>
-                          <span style={{ background: user.isActive ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.12)', color: user.isActive ? '#10b981' : '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700' }}>
+                          <span style={{ background: user.isActive ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.12)', color: user.isActive ? '#10b981' : '#ef4444', padding: '0.2rem 0.6rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
                             {user.isActive ? '● Active' : '○ Inactive'}
                           </span>
                         </td>
@@ -203,6 +203,7 @@ const AdminUsers = () => {
                                 border: user.isActive ? '1px solid rgba(239,68,68,0.4)' : '1px solid rgba(16,185,129,0.4)',
                                 background: user.isActive ? 'rgba(239,68,68,0.08)' : 'rgba(16,185,129,0.08)',
                                 color: user.isActive ? '#ef4444' : '#10b981',
+                                whiteSpace: 'nowrap'
                               }}
                             >
                               {user.isActive ? 'Deactivate' : 'Activate'}

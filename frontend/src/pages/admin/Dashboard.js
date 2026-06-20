@@ -156,17 +156,17 @@ const Dashboard = () => {
                         <td style={{ padding: '0.75rem 1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{prop['location.city'] || prop.location?.city}</td>
                         <td style={{ padding: '0.75rem 1rem', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '700' }}>PKR {fmt(prop.price)}</td>
                         <td style={{ padding: '0.75rem 1rem' }}>
-                          <span style={{ background: prop.purpose === 'sale' ? 'rgba(99,102,241,0.15)' : 'rgba(16,185,129,0.15)', color: prop.purpose === 'sale' ? '#6366f1' : '#10b981', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700' }}>
+                          <span style={{ background: prop.purpose === 'sale' ? 'rgba(99,102,241,0.15)' : 'rgba(16,185,129,0.15)', color: prop.purpose === 'sale' ? '#6366f1' : '#10b981', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
                             {prop.purpose === 'sale' ? 'For Sale' : 'For Rent'}
                           </span>
                         </td>
                         <td style={{ padding: '0.75rem 1rem' }}>
-                          <span style={{ background: prop.isExternal ? 'rgba(6,182,212,0.12)' : 'rgba(99,102,241,0.12)', color: prop.isExternal ? '#06b6d4' : '#6366f1', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700' }}>
+                          <span style={{ background: prop.isExternal ? 'rgba(6,182,212,0.12)' : 'rgba(99,102,241,0.12)', color: prop.isExternal ? '#06b6d4' : '#6366f1', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
                             {prop.isExternal ? <span style={{display:'flex', alignItems:'center', gap:'2px'}}><Wifi size={12}/> Scraped</span> : ' Agent'}
                           </span>
                         </td>
                         <td style={{ padding: '0.75rem 1rem' }}>
-                          <span style={{ background: prop.isVerified ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)', color: prop.isVerified ? '#10b981' : '#f59e0b', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700' }}>
+                          <span style={{ background: prop.isVerified ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)', color: prop.isVerified ? '#10b981' : '#f59e0b', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
                             {prop.isVerified ? '✓ Verified' : '⏳ Pending'}
                           </span>
                         </td>

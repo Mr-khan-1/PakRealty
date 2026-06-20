@@ -179,12 +179,12 @@ const Properties = () => {
                       <span style={{
                         background: property.isVerified ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.12)',
                         color: property.isVerified ? '#10b981' : '#f59e0b',
-                        padding: '0.15rem 0.5rem', borderRadius: '999px', fontSize: '0.72rem', fontWeight: '700',
+                        padding: '0.15rem 0.5rem', borderRadius: '999px', fontSize: '0.72rem', fontWeight: '700', whiteSpace: 'nowrap'
                       }}>
                         {property.isVerified ? '✓ Verified' : '⏳ Pending Review'}
                       </span>
                       {property.isExternal && (
-                        <span style={{ marginLeft: '0.4rem', background: 'rgba(6,182,212,0.12)', color: '#06b6d4', padding: '0.15rem 0.5rem', borderRadius: '999px', fontSize: '0.72rem', fontWeight: '700' }}>
+                        <span style={{ marginLeft: '0.4rem', background: 'rgba(6,182,212,0.12)', color: '#06b6d4', padding: '0.15rem 0.5rem', borderRadius: '999px', fontSize: '0.72rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
                           🌐 Scraped
                         </span>
                       )}
