@@ -161,8 +161,8 @@ const Dashboard = () => {
                           </span>
                         </td>
                         <td style={{ padding: '0.75rem 1rem' }}>
-                          <span style={{ background: prop.isExternal ? 'rgba(6,182,212,0.12)' : 'rgba(99,102,241,0.12)', color: prop.isExternal ? '#06b6d4' : '#6366f1', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
-                            {prop.isExternal ? <span style={{display:'flex', alignItems:'center', gap:'2px'}}><Wifi size={12}/> Scraped</span> : ' Agent'}
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: prop.isExternal ? 'rgba(6,182,212,0.12)' : 'rgba(99,102,241,0.12)', color: prop.isExternal ? '#06b6d4' : '#6366f1', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.73rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                            {prop.isExternal ? <><Wifi size={12}/> Scraped</> : 'Agent'}
                           </span>
                         </td>
                         <td style={{ padding: '0.75rem 1rem' }}>
