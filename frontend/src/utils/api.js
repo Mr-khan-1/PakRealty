@@ -24,8 +24,11 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Clear stale token but don't force redirect (let React Router handle it)
+      // Clear stale token and force redirect to login
       Cookies.remove('token');
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
