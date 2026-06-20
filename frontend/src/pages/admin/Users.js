@@ -13,7 +13,7 @@ const roleColor = (role) => {
   }
 };
 
-const Users = () => {
+const AdminUsers = () => {
   const [users,      setUsers]      = useState([]);
   const [roleCounts, setRoleCounts] = useState({ user: 0, agent: 0, investor: 0, admin: 0 });
   const [total,      setTotal]      = useState(0);
@@ -222,4 +222,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default AdminUsers;
