@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { CheckCircle, XCircle, Trash2, ExternalLink, RefreshCw } from 'lucide-react';
+import { CheckCircle, XCircle, Trash2, ExternalLink, RefreshCw, Shield } from 'lucide-react';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext';
 
 const formatPrice = (price) => {
   if (!price) return 'N/A';
@@ -13,6 +14,7 @@ const formatPrice = (price) => {
 };
 
 const Properties = () => {
+  const { user } = useAuth();
   const [properties, setProperties] = useState([]);
   const [loading,    setLoading]    = useState(true);
   const [filter,     setFilter]     = useState('all'); // 'all' | 'pending' | 'verified'
@@ -81,6 +83,11 @@ const Properties = () => {
     <div className="dashboard-layout">
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
+        <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border)', marginBottom: '1rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', display: 'flex', justifyContent: 'center' }}><Shield size={32} color="var(--primary)" /></div>
+          <p style={{ fontWeight: '700', fontSize: '0.9rem', margin: '0.5rem 0 0.1rem' }}>Admin Panel</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', margin: 0 }}>{user?.name}</p>
+        </div>
         <ul className="sidebar-menu">
           <li><NavLink to="/admin/dashboard"  className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> System Overview</NavLink></li>
           <li><NavLink to="/admin/users"      className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Manage Users</NavLink></li>

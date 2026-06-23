@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Shield, Users, Building, TrendingUp, UserCircle, Search } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
 
@@ -14,6 +15,7 @@ const roleColor = (role) => {
 };
 
 const AdminUsers = () => {
+  const { user } = useAuth();
   const [users,      setUsers]      = useState([]);
   const [roleCounts, setRoleCounts] = useState({ user: 0, agent: 0, investor: 0, admin: 0 });
   const [total,      setTotal]      = useState(0);
@@ -73,8 +75,12 @@ const AdminUsers = () => {
 
   return (
     <div className="dashboard-layout">
-      {/* Sidebar */}
       <aside className="dashboard-sidebar">
+        <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border)', marginBottom: '1rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', display: 'flex', justifyContent: 'center' }}><Shield size={32} color="var(--primary)" /></div>
+          <p style={{ fontWeight: '700', fontSize: '0.9rem', margin: '0.5rem 0 0.1rem' }}>Admin Panel</p>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', margin: 0 }}>{user?.name}</p>
+        </div>
         <ul className="sidebar-menu">
           <li><NavLink to="/admin/dashboard"  className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> System Overview</NavLink></li>
           <li><NavLink to="/admin/users"      className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Manage Users</NavLink></li>
