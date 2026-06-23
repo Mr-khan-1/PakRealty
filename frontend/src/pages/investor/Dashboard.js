@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PieChart as PieChartIcon, Briefcase, Building, Heart, DollarSign, Target, Settings, ChevronRight, MessageSquare, TrendingUp, BrainCircuit, Activity, MapPin, Download, ArrowUpRight } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import api from '../../utils/api';
+import api, { getImageUrl } from '../../utils/api';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const formatPKR = (num) => {
@@ -287,7 +287,7 @@ const InvestorDashboard = () => {
               {withinBudget.map(prop => (
                 <Link to={`/property/${prop._id}`} key={prop._id} className="property-card" style={{ textDecoration: 'none' }}>
                   <div className="property-card-img-wrapper" style={{ height: '180px' }}>
-                    <img src={prop.thumbnail || prop.images?.[0]?.url || '/images/placeholder.jpg'} alt={prop.title} className="property-card-img" />
+                    <img src={getImageUrl(prop.thumbnail || prop.images?.[0]?.url)} alt={prop.title} className="property-card-img" />
                     <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(16,185,129,0.9)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
                       {strategy === 'rental' ? 'HIGH YIELD' : 'CAPITAL GAIN'}
                     </div>

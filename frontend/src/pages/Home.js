@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-
+import api, { getImageUrl } from '../utils/api';
+import toast from 'react-hot-toast';
 
 import {
   ShieldCheck, BarChart3, Users, Smartphone,
@@ -233,7 +234,7 @@ export default function Home() {
               <div className="property-card" key={p._id}>
                 <div className="property-card-img-wrapper" style={{ height: '260px' }}>
                     <img
-                      src={p.thumbnail || p.images?.[0]?.url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600'}
+                      src={getImageUrl(p.thumbnail || p.images?.[0]?.url)}
                       alt={p.title}
                       className="property-card-img"
                       loading="lazy"

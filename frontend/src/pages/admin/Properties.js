@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { CheckCircle, XCircle, Trash2, ExternalLink, RefreshCw, Shield } from 'lucide-react';
-import api from '../../utils/api';
+import api, { getImageUrl } from '../../utils/api';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 
@@ -161,14 +161,14 @@ const Properties = () => {
                 onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
               >
                 {/* Left: image + info */}
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'flex-start', flex: 1, minWidth: 0 }}>
                   <img
-                    src={property.thumbnail || property.images?.[0]?.url || 'https://via.placeholder.com/80x60?text=No+Image'}
+                    src={getImageUrl(property.thumbnail || property.images?.[0]?.url)}
                     alt={property.title}
                     style={{ width: '80px', height: '60px', objectFit: 'cover', borderRadius: 'var(--radius)', flexShrink: 0 }}
                     onError={e => { e.target.src = 'https://via.placeholder.com/80x60?text=No+Image'; }}
                   />
-                  <div style={{ minWidth: 0 }}>
+                  <div style={{ minWidth: 0, flex: 1, minWidth: '200px' }}>
                     <Link to={`/property/${property._id}`} target="_blank" style={{ color: 'var(--text)', textDecoration: 'none', fontWeight: '600', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                       {property.title}
                       <ExternalLink size={12} style={{ opacity: 0.5, flexShrink: 0 }} />
@@ -199,8 +199,8 @@ const Properties = () => {
                   </div>
                 </div>
 
-                {/* Right: action buttons */}
-                <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexShrink: 0 }}>
+                {/* Right: Actions */}
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'flex-start', alignItems: 'center', flexShrink: 0 }}>
                   <button
                     onClick={() => handleVerify(property._id, property.isVerified)}
                     title={property.isVerified ? 'Click to unverify' : 'Click to verify'}

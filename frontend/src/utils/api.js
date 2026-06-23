@@ -1,7 +1,13 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+export const getImageUrl = (url) => {
+  if (!url) return 'https://via.placeholder.com/600x400?text=No+Image';
+  if (url.startsWith('http')) return url;
+  return `${API_BASE_URL}${url}`;
+};
 
 const api = axios.create({
   baseURL: `${API_BASE_URL}/api`,

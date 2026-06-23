@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../utils/api';
+import api, { getImageUrl } from '../utils/api';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Bed, Bath, Square, Heart, Phone, Mail, Key, ArrowLeft, Car, ChefHat, CheckCircle, Eye, Navigation } from 'lucide-react';
@@ -84,7 +84,7 @@ const PropertyDetail = () => {
   if (!property) return null;
 
   const images = property.images?.length > 0
-    ? property.images
+    ? property.images.map(img => ({ ...img, url: getImageUrl(img.url) }))
     : [{ url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800', alt: property.title }];
 
   const agentName = property.agentId?.name || property.contactInfo?.name || 'PakRealty Agent';

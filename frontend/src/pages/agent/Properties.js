@@ -4,7 +4,7 @@ import { Building, PlusCircle, MessageSquare, UserCircle } from 'lucide-react';
 
 import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import api from '../../utils/api';
+import api, { getImageUrl } from '../../utils/api';
 import toast from 'react-hot-toast';
 
 const Properties = () => {
@@ -82,7 +82,7 @@ const Properties = () => {
               <div className="property-card" key={property._id}>
                 <div className="property-card-img-wrapper" style={{ height: '180px' }}>
                   <img
-                    src={property.thumbnail || property.images?.[0]?.url || 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600'}
+                    src={getImageUrl(property.thumbnail || property.images?.[0]?.url)}
                     alt={property.title}
                     className="property-card-img"
                     onError={e => { e.target.src = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600'; }}

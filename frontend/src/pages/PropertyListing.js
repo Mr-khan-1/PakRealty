@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { MapPin, Bed, Bath, Square, Scale } from 'lucide-react';
-import api from '../utils/api';
+import api, { getImageUrl } from '../utils/api';
 import toast from 'react-hot-toast';
 
 const CITIES = ['Islamabad', 'Lahore', 'Karachi', 'Rawalpindi', 'Peshawar', 'Multan', 'Quetta', 'Faisalabad'];
@@ -205,7 +205,7 @@ const PropertyListing = () => {
                     <div className="property-card" key={property._id}>
                       <div className="property-card-img-wrapper">
                         <img
-                          src={property.thumbnail || property.images?.[0]?.url || `https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600`}
+                          src={getImageUrl(property.thumbnail || property.images?.[0]?.url)}
                           alt={property.title}
                           className="property-card-img"
                           loading="lazy"
