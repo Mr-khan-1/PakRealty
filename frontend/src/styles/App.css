@@ -1053,6 +1053,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--r-lg);
   padding: 2rem;
   box-shadow: var(--shadow-xs);
+  min-width: 0;
 }
 
 /* Stats cards */
@@ -1295,6 +1296,7 @@ tbody tr:last-child td { border-bottom: none; }
 
   /* Dashboard */
   .dashboard-layout  { grid-template-columns: 1fr; }
+  .dashboard-content { padding: 1.25rem; }
   .dashboard-sidebar {
     position: static;
     border-right: none;

@@ -72,7 +72,14 @@ export default function Navbar() {
         <div className="nav-container">
 
           {/* ── Logo ──────────────────────────────────────────────── */}
-          <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
+          <Link 
+            to={role === 'admin' ? '#' : '/'} 
+            className="logo" 
+            onClick={(e) => {
+              if (role === 'admin') e.preventDefault();
+              setMenuOpen(false);
+            }}
+          >
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
               <path d="M3 9.5L12 3L21 9.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -84,7 +91,7 @@ export default function Navbar() {
 
           {/* ── Desktop nav ───────────────────────────────────────── */}
           <ul className="nav-menu nav-menu--desktop">
-            {!token && (
+            {role !== 'admin' && !token && (
               <>
                 <li><NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink></li>
               </>
@@ -132,7 +139,7 @@ export default function Navbar() {
         {/* ── Mobile drawer ─────────────────────────────────────────── */}
         <div className={`mobile-drawer${menuOpen ? ' mobile-drawer--open' : ''}`}>
           <ul className="mobile-nav-list">
-            {!token && (
+            {role !== 'admin' && !token && (
               <>
                 <li><NavLink to="/" className="mobile-nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Home size={18} /> Home</NavLink></li>
                 <li><NavLink to="/properties" className="mobile-nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Building size={18} /> Properties</NavLink></li>
