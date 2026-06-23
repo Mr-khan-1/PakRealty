@@ -109,7 +109,7 @@ const AdminUsers = () => {
 
         {/* Search + Role Filter */}
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '0.5rem', flex: 1, minWidth: '240px' }}>
+          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '0.5rem', flex: 1, minWidth: 0 }}>
             <input
               type="text"
               className="form-control"

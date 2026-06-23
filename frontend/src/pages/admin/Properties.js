@@ -154,7 +154,7 @@ const Properties = () => {
                 onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
               >
                 {/* Left: image + info */}
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flex: 1, minWidth: '240px' }}>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flex: 1, minWidth: 0 }}>
                   <img
                     src={property.thumbnail || property.images?.[0]?.url || 'https://via.placeholder.com/80x60?text=No+Image'}
                     alt={property.title}

@@ -112,7 +112,7 @@ const Dashboard = () => {
         ) : (
           <>
             {/* KPI grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
               <StatCard icon={<Users size={28} />} label="Total Users"      value={stats?.totalUsers      ?? 0} link="/admin/users" />
               <StatCard icon={<Building size={28} />} label="Agents"           value={stats?.totalAgents     ?? 0} link="/admin/users"
                 color="#f59e0b" bg="rgba(245,158,11,0.1)" border="rgba(245,158,11,0.25)" />
@@ -126,8 +126,8 @@ const Dashboard = () => {
 
             {/* Recent listings table */}
             <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ margin: 0, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><ClipboardList size={18} color="var(--primary)" /> Recent Listings — Verification Queue</h3>
+              <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem' }}>
+                <h3 style={{ margin: 0, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.4rem', flex: 1, minWidth: 0 }}><ClipboardList size={18} color="var(--primary)" /> Recent Listings</h3>
                 <Link to="/admin/properties" style={{ color: 'var(--primary)', fontSize: '0.85rem', fontWeight: '600' }}>View All →</Link>
               </div>
               <div style={{ overflowX: 'auto' }}>
