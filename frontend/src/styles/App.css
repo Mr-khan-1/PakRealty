@@ -295,6 +295,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--primary-hover), var(--primary));
   box-shadow: 0 6px 20px rgba(37,99,235,0.35);
   transform: translateY(-1px);
+  color: #fff;
 }
 
 .btn-secondary {
@@ -306,18 +307,20 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--surface-2);
   border-color: var(--border-dark);
   transform: translateY(-1px);
+  color: var(--text);
 }
 
 .btn-danger {
   background: linear-gradient(135deg, var(--danger), #f87171);
   color: #fff;
 }
-.btn-danger:hover { box-shadow: 0 6px 20px rgba(239,68,68,0.35); transform: translateY(-1px); }
+.btn-danger:hover { box-shadow: 0 6px 20px rgba(239,68,68,0.35); transform: translateY(-1px); color: #fff; }
 
 .btn-success {
   background: linear-gradient(135deg, var(--success), #34d399);
   color: #fff;
 }
+.btn-success:hover { box-shadow: 0 6px 20px rgba(16,185,129,0.35); transform: translateY(-1px); color: #fff; }
 
 .btn-sm  { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
 .btn-lg  { padding: 0.85rem 2rem;  font-size: 1rem; }
@@ -1292,7 +1295,27 @@ tbody tr:last-child td { border-bottom: none; }
 
   /* Dashboard */
   .dashboard-layout  { grid-template-columns: 1fr; }
-  .dashboard-sidebar { position: static; }
+  .dashboard-sidebar {
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    height: auto;
+  }
+  .sidebar-menu {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sidebar-menu::-webkit-scrollbar { height: 4px; }
+  .sidebar-menu::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: var(--r-full); }
+  .sidebar-link {
+    white-space: nowrap;
+    padding: 0.6rem 1rem;
+  }
 
   /* Footer */
   .footer-container  { grid-template-columns: 1fr 1fr; gap: 2rem 1rem; }
@@ -1311,7 +1334,7 @@ tbody tr:last-child td { border-bottom: none; }
   .section-header { flex-direction: column; }
   .cities-grid    { grid-template-columns: 1fr 1fr; }
   .features-grid  { grid-template-columns: 1fr; }
-  .properties-grid{ grid-template-columns: 1fr; }
+  .properties-grid{ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
   .stats-grid     { grid-template-columns: 1fr 1fr; }
   
   /* Layout Utilities */

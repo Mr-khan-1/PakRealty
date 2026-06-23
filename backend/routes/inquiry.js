@@ -67,6 +67,7 @@ router.get('/user/:userId', async (req, res) => {
     const inquiries = await Inquiry.find({ userId: req.params.userId })
       .populate('property', 'title price images')
       .populate('agent', 'name firstName lastName email phone')
+      .populate('responses.sender', 'name firstName lastName')
       .sort({ createdAt: -1 });
 
     res.json({ inquiries });
@@ -81,6 +82,7 @@ router.get('/agent/:agentId', async (req, res) => {
     const inquiries = await Inquiry.find({ agentId: req.params.agentId })
       .populate('property', 'title price images')
       .populate('user', 'name firstName lastName email phone')
+      .populate('responses.sender', 'name firstName lastName')
       .sort({ createdAt: -1 });
 
     res.json({ inquiries });
@@ -95,7 +97,8 @@ router.get('/:id', async (req, res) => {
     const inquiry = await Inquiry.findById(req.params.id)
       .populate('property')
       .populate('user', 'name firstName lastName email phone')
-      .populate('agent', 'name firstName lastName email phone');
+      .populate('agent', 'name firstName lastName email phone')
+      .populate('responses.sender', 'name firstName lastName');
 
     if (!inquiry) {
       return res.status(404).json({ error: 'Inquiry not found' });
@@ -149,12 +152,13 @@ router.post('/:id/response', verifyToken, [
     const inquiry = await Inquiry.findByIdAndUpdate(
       req.params.id,
       {
-        reply: req.body.message,
-        status: 'replied',
-        updatedAt: new Date()
+        $push: { responses: { sender: req.userId, message: req.body.message } },
+        $set: { status: 'replied', updatedAt: new Date() }
       },
       { new: true }
-    ).populate('agentId', 'name firstName lastName email');
+    )
+    .populate('agent', 'name firstName lastName email')
+    .populate('responses.sender', 'name firstName lastName');
 
     res.json({
       message: 'Response added',

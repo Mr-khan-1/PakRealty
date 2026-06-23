@@ -16,7 +16,6 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Property from '../models/Property.js';
-import { runScraperJob } from '../scripts/scraper.js';
 
 const router = express.Router();
 
@@ -40,55 +39,7 @@ const requireAdmin = async (req, res, next) => {
   }
 };
 
-// ─── Scraper state (in-memory lock — prevents concurrent runs) ───────────────
-let scraperState = {
-  running:   false,
-  startedAt: null,
-  lastRun:   null,
-  lastResult: null,
-};
 
-// POST /api/admin/scrape — trigger full property scrape
-router.post('/scrape', requireAdmin, async (req, res) => {
-  if (scraperState.running) {
-    return res.status(409).json({
-      error: 'Scraper is already running',
-      startedAt: scraperState.startedAt,
-    });
-  }
-
-  scraperState.running   = true;
-  scraperState.startedAt = new Date();
-
-  // Send immediate ACK — scraper runs in background
-  res.json({
-    message:   'Scraper started successfully',
-    startedAt: scraperState.startedAt,
-  });
-
-  // Run asynchronously (no await on the response)
-  try {
-    const result = await runScraperJob(msg => console.log('[SCRAPER]', msg));
-    scraperState.lastResult = { ...result, completedAt: new Date() };
-    console.log('✅ Admin scraper job complete:', result);
-  } catch (err) {
-    scraperState.lastResult = { error: err.message, completedAt: new Date() };
-    console.error('❌ Admin scraper job failed:', err);
-  } finally {
-    scraperState.running   = false;
-    scraperState.lastRun   = new Date();
-  }
-});
-
-// GET /api/admin/scrape/status — poll scraper progress
-router.get('/scrape/status', requireAdmin, (req, res) => {
-  res.json({
-    running:    scraperState.running,
-    startedAt:  scraperState.startedAt,
-    lastRun:    scraperState.lastRun,
-    lastResult: scraperState.lastResult,
-  });
-});
 
 // GET /api/admin/stats — full platform statistics
 router.get('/stats', requireAdmin, async (req, res) => {
@@ -105,8 +56,7 @@ router.get('/stats', requireAdmin, async (req, res) => {
       User.countDocuments({ role: 'agent' }),
       User.countDocuments({ role: 'investor' }),
       Property.countDocuments({}),
-      Property.countDocuments({ isVerified: false }),
-      Property.countDocuments({ isExternal: true }),
+      Property.countDocuments({ isVerified: false })
     ]);
 
     const recentListings = await Property.find({})
@@ -122,10 +72,7 @@ router.get('/stats', requireAdmin, async (req, res) => {
         totalInvestors,
         totalBuyers: totalUsers - totalAgents - totalInvestors,
         totalProperties,
-        pendingProperties,
-        scrapedProperties,
-        lastScraperRun: scraperState.lastRun,
-        scraperRunning: scraperState.running,
+        pendingProperties
       },
       recentListings,
     });

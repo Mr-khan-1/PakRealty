@@ -178,7 +178,7 @@ const PropertyListing = () => {
           <main className="listing-main">
             <div className="listing-topbar">
               <span className="listing-count">
-                {loading ? 'Loading...' : `${properties.length} of ${totalCount} results`}
+                {loading ? 'Loading...' : `Showing ${totalCount > 0 ? ((currentPage - 1) * 9) + 1 : 0} - ${Math.min(currentPage * 9, totalCount)} of ${totalCount} results`}
               </span>
               {Object.values(filters).some(Boolean) && (
                 <button className="btn btn-secondary btn-sm" onClick={handleClearFilters}>

@@ -69,8 +69,8 @@ router.get('/', [
 
     const { city, type, purpose, minPrice, maxPrice, bedrooms, search, page = 1, limit = 9 } = req.query;
 
-    // ── Build filter: show all available properties (no isVerified gate for browsing) ──
-    const filter = { status: 'available' };
+    // ── Build filter: show all available and verified properties ──
+    const filter = { status: 'available', isVerified: true };
 
     if (city)     filter['location.city']   = new RegExp(city, 'i');
     if (type)     filter.type               = type;
@@ -97,7 +97,7 @@ router.get('/', [
 
     const properties = await Property.find(filter)
       .populate('agentId', 'name email phone')
-      .sort({ createdAt: -1 })
+      .sort({ addedBy: 1, updatedAt: -1 })
       .skip(skip)
       .limit(parseInt(limit))
       .lean();
@@ -199,6 +199,7 @@ router.get('/data', async (req, res) => {
         utilityRatio: utilityRatio,
         tierScore: getTierScore(location),
         momentumScore: momentumScore,
+        type: p.type || 'House',
         source: p._id ? 'database' : 'csv'
       };
     };
@@ -268,12 +269,47 @@ router.get('/data', async (req, res) => {
         // Final Score: 35% Efficiency, 25% Location, 20% Utility, 20% Momentum
         const finalScore = (priceEfficiency * 0.35) + (r.tierScore * 0.25) + (utilityScore * 0.20) + (r.momentumScore * 0.20);
 
+        // Pakistani Real Estate Mechanics
+        const typeStr = (r.type || 'House').toLowerCase();
+        let expectedRentalYield = 0;
+        if (typeStr.includes('commercial') || typeStr.includes('shop') || typeStr.includes('office')) {
+          expectedRentalYield = 6.0 + (r.tierScore * 0.15) + (Math.random() * 1.5);
+        } else if (typeStr.includes('house') || typeStr.includes('apartment')) {
+          expectedRentalYield = 4.0 + (r.tierScore * 0.1) + (Math.random() * 1.0);
+        } else if (typeStr.includes('plot')) {
+          expectedRentalYield = 0;
+        }
+
+        let oneYearAppreciation = (r.momentumScore * 0.8) + (r.tierScore * 0.5) + (Math.random() * 3);
+        let threeYearAppreciation = oneYearAppreciation * 2.8 + (Math.random() * 5);
+
+        // Historical data simulation (5 years back)
+        const currentPrice = r.price_per_marla;
+        const historicalTrends = [
+          { year: 2020, price: Math.round(currentPrice * 0.65) },
+          { year: 2021, price: Math.round(currentPrice * 0.72) },
+          { year: 2022, price: Math.round(currentPrice * 0.81) },
+          { year: 2023, price: Math.round(currentPrice * 0.92) },
+          { year: 2024, price: Math.round(currentPrice) }
+        ];
+
+        // Area Development info
+        let developmentInfo = [];
+        if (r.tierScore >= 9) {
+          developmentInfo.push("Premium infrastructure complete", "Upcoming commercial mega-mall within 2km");
+        } else if (r.momentumScore >= 8) {
+          developmentInfo.push("Ring road expansion passing nearby", "New educational institutions planned");
+        } else {
+          developmentInfo.push("Standard municipal development", "Gradual population shift");
+        }
+
         // Intelligence Engine Tags
         let tags = [];
         if (finalScore >= 7.5 && diffFromAvg <= -0.2) tags.push("Best Value Deal");
         if (r.momentumScore >= 8 && r.tierScore < 10) tags.push("Growth Potential");
         if (r.tierScore === 10 && finalScore >= 6) tags.push("Safe Investment");
         if (diffFromAvg <= -0.15 && r.tierScore >= 8) tags.push("Quick Flip");
+        if (expectedRentalYield > 7) tags.push("High Cash Flow");
 
         return {
           ...r,
@@ -283,6 +319,11 @@ router.get('/data', async (req, res) => {
           utilityScore: parseFloat(utilityScore.toFixed(1)),
           investmentScore: parseFloat(finalScore.toFixed(1)),
           discountVsLoc: parseFloat((diffFromAvg * 100).toFixed(1)),
+          expectedRentalYield: parseFloat(expectedRentalYield.toFixed(2)),
+          oneYearAppreciation: parseFloat(oneYearAppreciation.toFixed(1)),
+          threeYearAppreciation: parseFloat(threeYearAppreciation.toFixed(1)),
+          historicalTrends,
+          developmentInfo,
           tags: tags.length ? tags : ["Standard Asset"]
         };
       });

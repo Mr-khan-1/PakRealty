@@ -57,8 +57,7 @@ const Dashboard = () => {
           totalAgents:      agents.length,
           totalInvestors:   Math.floor(agents.length * 0.6),
           totalProperties:  props.length,
-          pendingProperties:props.filter(p => !p.isVerified).length,
-          scrapedProperties:props.filter(p => p.isExternal).length,
+          pendingProperties:props.filter(p => !p.isVerified).length
         });
         setRecentListings(props.slice(0, 10));
       } catch {}
@@ -121,8 +120,6 @@ const Dashboard = () => {
                 color="#10b981" bg="rgba(16,185,129,0.1)" border="rgba(16,185,129,0.25)" />
               <StatCard icon={<Home size={28} />} label="Total Listings"   value={stats?.totalProperties ?? 0} link="/admin/properties"
                 color="#6366f1" bg="rgba(99,102,241,0.1)" border="rgba(99,102,241,0.25)" />
-              <StatCard icon={<Wifi size={28} />} label="Scraped Listings" value={stats?.scrapedProperties ?? 0}
-                color="#06b6d4" bg="rgba(6,182,212,0.1)" border="rgba(6,182,212,0.25)" />
               <StatCard icon={<AlertTriangle size={28} />} label="Pending Review"  value={stats?.pendingProperties ?? 0} link="/admin/properties"
                 color="#ef4444" bg="rgba(239,68,68,0.1)" border="rgba(239,68,68,0.25)" />
             </div>

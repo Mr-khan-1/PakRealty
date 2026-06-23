@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, MessageSquare, UserCircle, LayoutDashboard } from 'lucide-react';
+import { Heart, MessageSquare, UserCircle, LayoutDashboard, PieChart, Briefcase, Building, Settings } from 'lucide-react';
 
 
 import { Link, NavLink } from 'react-router-dom';
@@ -54,11 +54,33 @@ const SavedProperties = () => {
     <div className="dashboard-layout">
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
+        {user?.role === 'investor' && (
+          <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border)', marginBottom: '1rem' }}>
+            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', fontSize: '1.5rem', color: '#fff', fontWeight: '700' }}>
+              {user?.name?.[0]?.toUpperCase()}
+            </div>
+            <p style={{ textAlign: 'center', margin: '0.75rem 0 0', fontWeight: '700', fontSize: '0.9rem' }}>{user?.name}</p>
+            <p style={{ textAlign: 'center', margin: '0.2rem 0 0', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Investor Profile</p>
+          </div>
+        )}
         <ul className="sidebar-menu">
-          <li><NavLink to="/user/dashboard" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink></li>
-          <li><NavLink to="/user/saved" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><Heart size={18} /> Saved Properties</NavLink></li>
-          <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><MessageSquare size={18} /> My Inquiries</NavLink></li>
-          <li><NavLink to="/user/profile" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><UserCircle size={18} /> My Profile</NavLink></li>
+          {user?.role === 'investor' ? (
+            <>
+              <li><NavLink to="/investor/dashboard" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <PieChart size={18} /> AI Portfolio Overview</NavLink></li>
+              <li><NavLink to="/investor" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <Briefcase size={18} /> Deep Analysis Hub</NavLink></li>
+              <li><NavLink to="/properties" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <Building size={18} /> Browse Listings</NavLink></li>
+              <li><NavLink to="/user/saved" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <Heart size={18} /> Saved Deals</NavLink></li>
+              <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <MessageSquare size={18} /> My Inquiries</NavLink></li>
+              <li><NavLink to="/user/profile" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}> <Settings size={18} /> Investment Settings</NavLink></li>
+            </>
+          ) : (
+            <>
+              <li><NavLink to="/user/dashboard" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><LayoutDashboard size={18} /> Overview</NavLink></li>
+              <li><NavLink to="/user/saved" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><Heart size={18} /> Saved Properties</NavLink></li>
+              <li><NavLink to="/user/inquiries" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><MessageSquare size={18} /> My Inquiries</NavLink></li>
+              <li><NavLink to="/user/profile" className={({isActive}) => `sidebar-link${isActive ? ' active' : ''}`}><UserCircle size={18} /> My Profile</NavLink></li>
+            </>
+          )}
         </ul>
       </aside>
 

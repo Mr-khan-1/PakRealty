@@ -8,7 +8,11 @@ const InquirySchema = new mongoose.Schema({
   inquiryType: { type: String, enum: ['general', 'inspection', 'offer', 'rental'], default: 'general' },
   preferredContact: { type: String, enum: ['email', 'phone', 'whatsapp'], default: 'email' },
   status:     { type: String, enum: ['pending', 'replied', 'closed', 'new', 'contacted', 'in-progress', 'resolved', 'responded'], default: 'pending' },
-  reply:      { type: String, default: '' },
+  responses:  [{
+    sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    message: String,
+    createdAt: { type: Date, default: Date.now }
+  }],
 }, { timestamps: true });
 
 // Virtual populates & setters for backward compatibility with routes/controllers
@@ -39,15 +43,7 @@ InquirySchema.virtual('agent', {
   this.agentId = val;
 });
 
-// Virtual responses mapping to the single reply field
-InquirySchema.virtual('responses').get(function() {
-  if (!this.reply) return [];
-  return [{
-    sender: this.agentId,
-    message: this.reply,
-    createdAt: this.updatedAt || this.createdAt
-  }];
-});
+
 
 InquirySchema.index({ agentId: 1, status: 1 });
 InquirySchema.index({ userId: 1 });

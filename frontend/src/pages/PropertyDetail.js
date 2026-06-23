@@ -276,16 +276,18 @@ const PropertyDetail = () => {
       <div style={{ fontSize: '0.8rem', color: 'var(--text-2)' }}>Verified Agent</div>
     </div>
   </div>
-  {agentPhone && (
-    <a href={`tel:${agentPhone}`} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-2)', marginBottom: '0.4rem', textDecoration: 'none' }}>
-      <Phone size={14} /> {agentPhone}
-    </a>
-  )}
-  {agentEmail && (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-2)' }}>
-      <Mail size={14} /> {agentEmail}
-    </div>
-  )}
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    {agentPhone && (
+      <a href={`tel:${agentPhone}`} className="btn btn-primary" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+        <Phone size={16} /> Call {agentPhone}
+      </a>
+    )}
+    {agentEmail && (
+      <a href={`mailto:${agentEmail}`} className="btn btn-secondary" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+        <Mail size={16} /> Email Agent
+      </a>
+    )}
+  </div>
 </div>
 
             <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '1.25rem 0' }} />
