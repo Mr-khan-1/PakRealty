@@ -104,13 +104,13 @@ const Inquiries = () => {
                   background: 'white',
                   border: '1px solid var(--border)',
                   borderRadius: 'var(--radius-lg)',
-                  padding: '2rem',
+                  padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1.5rem'
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'start' }}>
                   <div>
                     <h3 style={{ fontSize: '1.25rem', color: 'var(--primary)', marginBottom: '0.5rem' }}>
                       {inq.property?.title || 'Unknown Property'}
@@ -152,7 +152,7 @@ const Inquiries = () => {
                 )}
 
                 {/* Reply Form */}
-                <form onSubmit={(e) => handleReplySubmit(e, inq._id)} style={{ display: 'flex', gap: '1rem' }}>
+                <form onSubmit={(e) => handleReplySubmit(e, inq._id)} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                   <input
                     type="text"
                     className="form-control"
