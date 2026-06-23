@@ -76,9 +76,9 @@ const AdminUsers = () => {
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <ul className="sidebar-menu">
-          <li><NavLink to="/admin/dashboard"  className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> System Stats</NavLink></li>
-          <li><NavLink to="/admin/users"      className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}>👥 User Accounts</NavLink></li>
-          <li><NavLink to="/admin/properties" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Moderation</NavLink></li>
+          <li><NavLink to="/admin/dashboard"  className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> System Overview</NavLink></li>
+          <li><NavLink to="/admin/users"      className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Manage Users</NavLink></li>
+          <li><NavLink to="/admin/properties" className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}> Moderation Queue</NavLink></li>
         </ul>
       </aside>
 
